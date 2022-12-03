@@ -1,6 +1,19 @@
 .link{
-    font-size: 25px;
-    color: teal;
-    text-decoration: none;
-    border-bottom: 1px;
+    font-size: 15px;
+    padding: 12.5px;
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    color: var(--black-color);
+    overflow: hidden;
+    background: linear-gradient(to right, #1EA59A, #1EA59A 50%, #000 0%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+}
+.link:hover{
+    background-position: 0 100%;
 }

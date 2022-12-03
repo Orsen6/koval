@@ -1,0 +1,17 @@
+.myButton{
+    background: #404858;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    background-image: linear-gradient(transparent 50%, var(--accent-color) 50%);
+    background-size: 200% 200%;
+    background-repeat: no-repeat;
+    transition: .2s;
+}
+.myButton:hover{
+    background-position: 0 100%;
+}

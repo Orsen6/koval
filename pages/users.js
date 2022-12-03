@@ -1,23 +1,26 @@
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import A from "../components/A"
-import MainContainer from "../components/MainContainer"
+import Header from "../components/Header";
 
 function Users({users}) {
 
   return (
-    <MainContainer>
+    <div>
+        <Header>
+
+        </Header>
         <h1>Users list</h1>
         <ul>
           {users.map(user => 
-          <li key='user.id'>
+          <li key={user.id}>
             <Link href={`/users/${user.id}`}>
               {user.name}
             </Link>
           </li>
           )}
         </ul>
-    </MainContainer>
+    </div>
   )
 }
 
