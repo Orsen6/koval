@@ -1,6 +1,11 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function({user}) {
+
+    useEffect(() => {
+        console.log(user)
+    }, [])
     const {query} = useRouter();
     return (
         <div>

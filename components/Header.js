@@ -10,7 +10,7 @@ function header({avtive, setActive}) {
     const [navs, setNavs] = useState([
         {
             title: 'Місцезнаходження',
-            path: '/about'
+            path: '/users'
         },
         {
             title: 'Про нас',
