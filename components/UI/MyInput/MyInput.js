@@ -1,8 +1,8 @@
 import classes from './MyInput.module.css'
 
-function MyInput({placeholder, type}) {
+function MyInput({placeholder, type, pattern}) {
   return (
-    <input placeholder={placeholder} type={type} className={classes.myInput}/>
+    <input placeholder={placeholder} type={type} className={classes.myInput} pattern={pattern}/>
   )
 }
 

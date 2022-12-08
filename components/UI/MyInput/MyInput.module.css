@@ -6,3 +6,18 @@
     margin-bottom: 15px;
     font-weight: 400;
 }
+.myInput:invalid{
+    animation: invalid .3s;
+}
+
+@keyframes invalid {
+    25% {
+        transform: translateX(4px);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+    75% {
+        transform: translateY(4px);
+    }
+}

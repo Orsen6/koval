@@ -10,16 +10,36 @@ function BannerSwiper() {
   return (
     <>
         <Swiper
-          slidesPerView={2}
-          spaceBetween={30}
+        breakpoints={{
+          250: {
+            slidesPerView: 1,
+            centeredSlides: false
+          },
+          450: {
+            slidesPerView: 2
+          },
+          576: {
+            spaceBetween: 10,
+            slidesPerView: 3,
+            centeredSlides: false
+          },
+          769: {
+            slidesPerView: 2,
+            centeredSlides: true
+          },
+          992: {
+            spaceBetween: 30,
+            slidesPerView: 2,
+            centeredSlides: true
+          }
+        }}
           grabCursor={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
           }}
-          centeredSlides={true}
-          className="mySwiper"
-          // modules={[Autoplay]}
+          className="mySwiper bannerSwiper"
+          modules={[Autoplay]}
         >
           <SwiperSlide>
             <img src="/bannerSlide1.jpg"/>
