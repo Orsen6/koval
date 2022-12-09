@@ -13,7 +13,8 @@ function BannerSwiper() {
         breakpoints={{
           250: {
             slidesPerView: 1,
-            centeredSlides: false
+            centeredSlides: false,
+            spaceBetween: 10
           },
           450: {
             slidesPerView: 2

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import BannerSwiper from "../components/BannerSwiper"
 import Form from "../components/Form"
 import Header from "../components/Header.jsx"
@@ -8,16 +8,52 @@ import Modal from "../components/Modal"
 import RoomSwiper from "../components/RoomSwiper"
 import MyButton from "../components/UI/MyButton/MyButton"
 import MyInput from "../components/UI/MyInput/MyInput"
+import Head from 'next/head';
+import { useDispatch, useSelector } from "react-redux"
+
 
 function Main() {
   
-  const [modalActive, setModalActive] = useState(false)
+    const dispatch = useDispatch()
+
+  const enableBurger = () => {
+    dispatch({type: "ACTIVE", payload: true})
+    document.body.classList.add('overflowHidden')
+  }
+  const disableBurger = () => {
+    dispatch({type: "DISABLED", payload: false})
+    document.body.classList.remove('overflowHidden')
+  }
+  const enableModal = () => {
+    dispatch({type: "ACTIVE_MODAL", payload: true})
+    document.body.classList.add('overflowHidden')
+  }
+  const disableModal = () => {
+    dispatch({type: "DISABLED_MODAL", payload: false})
+    document.body.classList.remove('overflowHidden')
+  }
+
+  const [preload, setPreload] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPreload(true)
+    }, 1500)
+  })
 
   return (
     <div>
-      <Header setActive={setModalActive}>
+
+      <div className={preload ? 'preloader loaded' : 'preloader'}>
+        <div className="mask"></div>
+      </div>
+    <div className="content">
+        <Head>
+          <title>Koval</title>
+        </Head>
+      <Header enableBurger={enableBurger} disableBurger={disableBurger} enableModal={enableModal} disableModal={disableModal}>
       </Header>
-      <Modal active={modalActive} setActive={setModalActive}>
+      <Modal enableModal={enableModal} disableModal={disableModal}>
         <Form>
         <a className="myForm_callto" href='callto:+380680434447'>
           <Image alt='call' src='/phonecall.png' width='54' height='54'/>
@@ -34,7 +70,7 @@ function Main() {
           <h1 className="banner_title">Знайдіть у нас свій простір</h1>
           <div className="banner_choose">
             <p className="banner_p">Обирайте комфорт</p>
-            <button onClick={() => setModalActive(true)} className="banner_btn">Знайдіть нас</button>
+            <button onClick={() => enableModal()} className="banner_btn">Знайдіть нас</button>
           </div>
         </div>
         <BannerSwiper/>
@@ -193,6 +229,7 @@ function Main() {
           </div>
         </div>
       </div> 
+    </div>
     </div>
       
   )

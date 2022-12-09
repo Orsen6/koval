@@ -31,7 +31,7 @@ function RoomSwiper() {
             centeredSlides={true}
             className="mySwiper"
             grabCursor={true}
-            loop={true}
+            // loop={true}
         >
         <SwiperSlide>
             <div className="room_slide">
