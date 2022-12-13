@@ -15,3 +15,9 @@
 .myButton:hover{
     background-position: 0 100%;
 }
+
+@media screen and (max-width: 768px) {
+    .myButton:hover{
+        background-position: 0 0;
+    }
+}

@@ -17,15 +17,17 @@ function BannerSwiper() {
             spaceBetween: 10
           },
           450: {
-            slidesPerView: 2
+            slidesPerView: 1,
+            spaceBetween: 10,
           },
           576: {
             spaceBetween: 10,
-            slidesPerView: 3,
+            slidesPerView: 2,
             centeredSlides: false
           },
           769: {
             slidesPerView: 2,
+            spaceBetween: 20,
             centeredSlides: true
           },
           992: {

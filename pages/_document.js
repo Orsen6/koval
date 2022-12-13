@@ -4,7 +4,7 @@ function Document() {
   return (
         <Html>
             <Head />
-            <body className="123">
+            <body>
                 <Main/>
                 <NextScript/>
             </body>

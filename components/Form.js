@@ -1,7 +1,7 @@
 
-function Form({children}) {
+function Form({children}, props) {
   return (
-    <form className="myForm">
+    <form {...props} className="myForm">
         {children}
     </form>
   )

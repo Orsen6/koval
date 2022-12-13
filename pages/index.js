@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import BannerSwiper from "../components/BannerSwiper"
 import Form from "../components/Form"
 import Header from "../components/Header.jsx"
@@ -10,7 +10,7 @@ import MyButton from "../components/UI/MyButton/MyButton"
 import MyInput from "../components/UI/MyInput/MyInput"
 import Head from 'next/head';
 import { useDispatch, useSelector } from "react-redux"
-
+import axios from "axios";
 
 function Main() {
   
@@ -18,19 +18,19 @@ function Main() {
 
   const enableBurger = () => {
     dispatch({type: "ACTIVE", payload: true})
-    document.body.classList.add('overflowHidden')
+    document.body.classList.add('burgerActive')
   }
   const disableBurger = () => {
     dispatch({type: "DISABLED", payload: false})
-    document.body.classList.remove('overflowHidden')
+    document.body.classList.remove('burgerActive')
   }
   const enableModal = () => {
     dispatch({type: "ACTIVE_MODAL", payload: true})
-    document.body.classList.add('overflowHidden')
+    document.body.classList.add('modalActive')
   }
   const disableModal = () => {
     dispatch({type: "DISABLED_MODAL", payload: false})
-    document.body.classList.remove('overflowHidden')
+    document.body.classList.remove('modalActive')
   }
 
   const [preload, setPreload] = useState(false)
@@ -41,9 +41,26 @@ function Main() {
     }, 1500)
   })
 
+  const [name, setName] = useState('');
+  const [mail, setMail] = useState('');
+
+  async function sendForm(e) {
+    e.preventDefault()
+    try {
+      await axios.post('http://localhost:3000/api/send-request', {
+          name, mail
+        }
+      );
+      setName('');
+      setMail('');
+      disableModal();
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+    
   return (
     <div>
-
       <div className={preload ? 'preloader loaded' : 'preloader'}>
         <div className="mask"></div>
       </div>
@@ -59,11 +76,12 @@ function Main() {
           <Image alt='call' src='/phonecall.png' width='54' height='54'/>
         </a>
         <h2 className="modal_title">Зворотній зв'язок</h2>
-        <MyInput type='text' placeholder="Введіть ваше ім'я" pattern='[а-яА-Я]*'/>
-        <MyInput type='tel' placeholder="Введіть ваш номер телефону" pattern='[+][0-9]*'/>
-        <MyButton>Надіслати контакти</MyButton>
+        <MyInput value={name} onChange={e => setName(e.target.value)} type='text' placeholder="Введіть ваше ім'я" pattern='[a-zA-Zа-яА-Я]*'/>
+        <MyInput value={mail} onChange={e => setMail(e.target.value)} type='tel' placeholder="Введіть ваш номер телефону" pattern='[0-9]*'/>
+        <MyButton onClick={sendForm}>Надіслати контакти</MyButton>
         </Form>
       </Modal>
+      
 
       <div className="banner">
         <div className="banner_box">

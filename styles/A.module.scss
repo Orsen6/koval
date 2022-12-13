@@ -24,3 +24,12 @@
         font-size: 25px;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .link{
+        font-size: 23px;
+    }
+    .link:hover{
+        background-position: 100%;
+    }
+}
